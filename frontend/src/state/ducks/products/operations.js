@@ -9,7 +9,7 @@ const productsSchema = new schema.Array(productSchema);
 
 const getProducts = (userId) => (dispatch) => dispatch(createAction({
     method: 'GET',
-    endpoint: `https://localhost:5000/calories-tracker/${userId}/days`,
+    endpoint: `https://localhost:5000/calories-tracker/${userId}/products`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
