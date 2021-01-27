@@ -20,32 +20,25 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="d51d9e30-ea78-448e-8c3c-290ad9ee8f2c" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/.idea/inspectionProfiles/Project_Default.xml" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/AccountPage/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/FindPage/ProductFinder.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/MainPage/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/MainPage/Meal.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/MainPage/Meals.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/StatisticsPage/Doughnut.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/StatisticsPage/Footer.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/StatisticsPage/LineChart.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/StatisticsPage/Statistics.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/views/AccountPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/views/FindPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/views/LoginPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/views/MainPage.js" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/src/UI/views/StatisticsPage.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/days/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/days/operations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/days/reducers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/days/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/entities/index.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/products/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/products/operations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/products/reducers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/products/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/user/actions.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/user/operations.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/user/reducers.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/ducks/user/types.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/state/store.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.eslintcache" beforeDir="false" afterPath="$PROJECT_DIR$/.eslintcache" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/.gitignore" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/package-lock.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/package.json" beforeDir="false" afterPath="$PROJECT_DIR$/package.json" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/App.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/App.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/Calendar.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/AccountPage/Account.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/Doughnut.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/AccountPage/Paremeters.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/LineChart.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FindPage/Footer.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/MealCreator.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FindPage/Result.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/ProductFinder.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/FindPage/Results.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/UI/MainPage/Statistics.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/MainPage/DateBar.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/LoginPage/LoginForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/LoginPage/LoginForm.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/UI/LoginPage/RegisterForm.js" beforeDir="false" afterPath="$PROJECT_DIR$/src/UI/LoginPage/RegisterForm.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/yarn.lock" beforeDir="false" afterPath="$PROJECT_DIR$/yarn.lock" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -74,7 +67,7 @@
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="SHARE_PROJECT_CONFIGURATION_FILES" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/src/UI/AccountPage" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../../robert-jankowski/lab08" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
@@ -86,6 +79,7 @@
       <recent name="C:\Users\robii\Programowanie\projekty\calories-tracker\frontend\src\UI\StatisticsPage" />
     </key>
     <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\Users\robii\Programowanie\projekty\calories-tracker\frontend\src\state" />
       <recent name="C:\Users\robii\Programowanie\projekty\calories-tracker\frontend\src\UI\views" />
       <recent name="C:\Users\robii\Programowanie\projekty\calories-tracker\frontend\src\UI\StatisticsPage" />
       <recent name="C:\Users\robii\Programowanie\projekty\calories-tracker\frontend\src\UI\MealPage" />
@@ -106,7 +100,9 @@
       <workItem from="1611415892590" duration="35000" />
       <workItem from="1611421680823" duration="4812000" />
       <workItem from="1611438595075" duration="2627000" />
-      <workItem from="1611489345232" duration="4432000" />
+      <workItem from="1611489345232" duration="7414000" />
+      <workItem from="1611527057231" duration="2000" />
+      <workItem from="1611587315486" duration="786000" />
     </task>
     <servers />
   </component>
@@ -134,6 +130,10 @@
       <screen x="0" y="0" width="1536" height="824" />
     </state>
     <state x="499" y="159" key="#com.intellij.refactoring.safeDelete.UnsafeUsagesDialog/0.0.1536.824@0.0.1536.824" timestamp="1611489405605" />
+    <state x="549" y="167" key="FileChooserDialogImpl" timestamp="1611588555823">
+      <screen x="0" y="0" width="1536" height="824" />
+    </state>
+    <state x="549" y="167" key="FileChooserDialogImpl/0.0.1536.824/1920.159.1920.1040@0.0.1536.824" timestamp="1611588555823" />
     <state x="425" y="187" key="run.anything.popup" timestamp="1611490979271">
       <screen x="0" y="0" width="1536" height="824" />
     </state>

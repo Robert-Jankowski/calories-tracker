@@ -1,0 +1,9 @@
+const PRODUCTS_REQUEST = '@@products/PRODUCTS_REQUEST'
+const PRODUCTS_SUCCESS = '@@products/PRODUCTS_REQUEST'
+const PRODUCTS_FAILURE = '@@products/PRODUCTS_REQUEST'
+const types = {
+    PRODUCTS_FAILURE,
+    PRODUCTS_REQUEST,
+    PRODUCTS_SUCCESS
+}
+export default types
