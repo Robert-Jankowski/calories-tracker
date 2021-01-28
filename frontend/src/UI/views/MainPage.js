@@ -7,8 +7,9 @@ import {connect} from "react-redux";
 import {default as daysOperations} from "../../state/ducks/days/operations";
 import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations"
+import {default as daysActions} from "../../state/ducks/days/actions"
 
-const MainPage = ({userId, isUserLogged, fetchDays, fetchProducts, fetchMeals}) => {
+const MainPage = ({userId, isUserLogged, changeDay, addDay, days, displayedDate, fetchDays, fetchProducts, fetchMeals}) => {
 
     useEffect(() => {
         if(isUserLogged) {
@@ -19,9 +20,14 @@ const MainPage = ({userId, isUserLogged, fetchDays, fetchProducts, fetchMeals}) 
 
         },[fetchDays, fetchProducts, fetchMeals, isUserLogged, userId])
 
+    useEffect(() => {
+        if(isUserLogged && !(displayedDate in days))
+            addDay(userId, displayedDate)
+    },[fetchDays])
+
     return(
         <main>
-            <DateBar />
+            <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
             <Meals />
             <Footer />
         </main>
@@ -41,13 +47,19 @@ const mapStateToProps = (state) => {
 const mapDispatchToProps = (dispatch) => {
     return {
         fetchDays: (userId) => {
-            daysOperations.getDays(userId)
+            dispatch(daysOperations.getDays(userId))
         },
         fetchProducts: (userId) => {
-            productsOperations.getProducts(userId)
+            dispatch(productsOperations.getProducts(userId))
         },
         fetchMeals: (userId) => {
-            mealsOperations.getMeals(userId)
+            dispatch(mealsOperations.getMeals(userId))
+        },
+        changeDay: (day) => {
+            dispatch(daysActions.changeDisplayedDate(day))
+        },
+        addDay: (userId, dayId) => {
+            dispatch(daysOperations.addDay(userId, dayId))
         }
     }
 }

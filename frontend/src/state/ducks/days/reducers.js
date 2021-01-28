@@ -1,4 +1,3 @@
-//TODAY: 2021-01-27
 const defaultState = new Date().toISOString().slice(0, 10)
 
 const displayedDate = (state = defaultState, action) => {

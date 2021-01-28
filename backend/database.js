@@ -56,14 +56,18 @@ function Database() {
         const user = this.users.find(n => n.user_data.id === id)
         const dayId = user.days.findIndex(n => n.id === day.id)
         user.days[dayId] = {...day}
+        return {...day}
     }
     this.addProduct = (id, product) => {
         const user = this.users.find(n => n.user_data.id === id)
         user.products.push({...product})
+        return {...product}
     }
     this.addDay = (id, dayId) => {
         const user = this.users.find(n => n.user_data.id === id)
-        user.days.push({id: dayId, meals: []})
+        const newDay = {id: dayId, meals: []}
+        user.days.push(newDay)
+        return newDay
     }
 }
 exports.Database = Database

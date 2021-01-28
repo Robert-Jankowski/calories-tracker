@@ -28,7 +28,31 @@ const getDays = (userId) => (dispatch) => dispatch(createAction({
         DAYS_FAILURE
     ]
 }))
+
+const addDay = (userId, dayId) => (dispatch) => dispatch(createAction({
+    method: 'POST',
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/day`,
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({dayId}),
+    types: [
+        DAYS_REQUEST,
+        {
+            type: DAYS_SUCCESS,
+            payload: async (action, state, res) => {
+                const json = await res.json();
+                const { entities } = normalize(json, daySchema);
+                return entities;
+            },
+            meta: { actionType: 'GET_ONE' }
+        },
+        DAYS_FAILURE
+    ]
+}))
+
 const operations = {
-    getDays
+    getDays, addDay
 }
 export default operations

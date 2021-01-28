@@ -18,6 +18,7 @@
     "redux-api-middleware": "^3.2.1",
     "redux-logger": "^3.0.6",
     "redux-thunk": "^2.3.0",
+    "reselect": "^4.0.0",
     "uuid": "^8.3.2",
     "web-vitals": "^0.2.4"
   },
