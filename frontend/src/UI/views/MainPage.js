@@ -7,16 +7,17 @@ import {connect} from "react-redux";
 import {default as daysOperations} from "../../state/ducks/days/operations";
 import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations"
-import operations from "../../state/ducks/user/operations";
 
-const MainPage = ({fetchDays, fetchProducts, fetchUser, fetchMeals}) => {
+const MainPage = ({userId, isUserLogged, fetchDays, fetchProducts, fetchMeals}) => {
 
     useEffect(() => {
-        fetchDays();
-        fetchProducts();
-        fetchUser();
-        fetchMeals();
-        },[fetchDays, fetchProducts, fetchUser, fetchMeals])
+        if(isUserLogged) {
+            fetchDays(userId);
+            fetchProducts(userId);
+            fetchMeals(userId);
+        }
+
+        },[fetchDays, fetchProducts, fetchMeals, isUserLogged, userId])
 
     return(
         <main>
@@ -29,9 +30,12 @@ const MainPage = ({fetchDays, fetchProducts, fetchUser, fetchMeals}) => {
 
 const mapStateToProps = (state) => {
     return {
+        userId: state.userState.userId,
+        isUserLogged: state.userState.isLogged,
         meals: state.entities.meals.allIds.map(n => state.entities.meals.byId[n]),
         days: state.entities.days.allIds.map(n => state.entities.days.byId[n]),
         products: state.entities.products.allIds.map(n => state.entities.products.byId[n]),
+        displayedDate: state.displayedDate
     }
 }
 const mapDispatchToProps = (dispatch) => {
@@ -44,10 +48,7 @@ const mapDispatchToProps = (dispatch) => {
         },
         fetchMeals: (userId) => {
             mealsOperations.getMeals(userId)
-        },
-        fetchUser: (userId) => {
-            dispatch(operations.getUser(userId))
-        },
+        }
     }
 }
 

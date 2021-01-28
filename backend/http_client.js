@@ -14,12 +14,12 @@ db.register("user", "secret", uuid())
 app.use(express.json());
 
 app.post('/calories-tracker/login', (req, res) => {
-    const userId = db.login(req.body.username, req.body.password)
-    return res.send({userId})
+    const response = db.login(req.body.username, req.body.password)
+    return res.send({...response})
 })
 app.post('/calories-tracker/register', (req, res) => {
-    const userId = db.register(req.body.username, req.body.password, uuid())
-    return res.send({userId})
+    const response = db.register(req.body.username, req.body.password, uuid())
+    return res.send({...response})
 })
 
 app.get(`/calories-tracker/:userId/user`, (req, res) => {

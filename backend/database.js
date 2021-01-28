@@ -34,12 +34,12 @@ function Database() {
             products: []
         }
         this.users.push(newUser)
-        return id
+        return {userId: newUser.user_data.id, username: newUser.user_data.username}
     }
     this.login = (username, password) => {
         const user = this.users.find(n => n.user_data.username === username && n.user_data.password === password)
         if (typeof user !== 'undefined') {
-            return user.user_data.id
+            return {userId: user.user_data.id, username: user.user_data.username}
         }
         else
             return null
