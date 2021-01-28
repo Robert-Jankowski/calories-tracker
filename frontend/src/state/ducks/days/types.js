@@ -1,6 +1,6 @@
 const DAYS_REQUEST = '@@days/DAYS_REQUEST'
-const DAYS_SUCCESS = '@@days/DAYS_REQUEST'
-const DAYS_FAILURE = '@@days/DAYS_REQUEST'
+const DAYS_SUCCESS = '@@days/DAYS_SUCCESS'
+const DAYS_FAILURE = '@@days/DAYS_FAILURE'
 const SET_DAY_MARKER = 'SET_DAY_MARKER'
 const types = {
     DAYS_FAILURE,

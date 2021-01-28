@@ -3,11 +3,11 @@ import {connect} from "react-redux";
 import operations from "../../state/ducks/user/operations"
 import LoginForm from "../LoginPage/LoginForm";
 
-const LoginPage = ({login}) => {
+const LoginPage = ({login, register}) => {
 
     return(
         <section>
-            <LoginForm />
+            <LoginForm login={login}/>
         </section>
     )
 }
@@ -22,6 +22,9 @@ const mapDispatchToProps = (dispatch) => {
         login: (username, password) => {
             dispatch(operations.login(username, password))
         },
+        register: (username, password) => {
+            dispatch(operations.register(username, password))
+        }
 
     }
 }

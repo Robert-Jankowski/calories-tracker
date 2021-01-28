@@ -8,7 +8,7 @@ const userSchema = new schema.Entity('user');
 
 const getUser = (userId) => (dispatch) => dispatch(createAction({
     method: 'GET',
-    endpoint: `https://localhost:5000/calories-tracker/${userId}/user`,
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/user`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -30,7 +30,22 @@ const getUser = (userId) => (dispatch) => dispatch(createAction({
 
 const login = (username, password) => (dispatch) => dispatch(createAction({
     method: 'POST',
-    endpoint: `https://localhost:5000/calories-tracker/login`,
+    endpoint: `http://localhost:5000/calories-tracker/login`,
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({username, password}),
+    types: [
+        USER_REQUEST,
+        USER_SUCCESS,
+        USER_FAILURE
+    ]
+}))
+
+const register = (username, password) => (dispatch) => dispatch(createAction({
+    method: 'POST',
+    endpoint: `http://localhost:5000/calories-tracker/register`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
@@ -45,6 +60,7 @@ const login = (username, password) => (dispatch) => dispatch(createAction({
 
 const operations = {
     getUser,
-    login
+    login,
+    register
 }
 export default operations

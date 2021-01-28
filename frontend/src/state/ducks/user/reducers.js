@@ -1,12 +1,15 @@
-const userId = (state = null, action) => {
+import types from "./types";
+const {USER_SUCCESS} = types
+
+const userState = (state = {userId: null, isLogged: false}, action) => {
     switch (action.type) {
-        case 'SET_USER_ID':
-            return action.payload != null ? action.payload : state;
+        case USER_SUCCESS:
+            return action.payload.userId != null ? {userId: action.payload.userId, isLogged: true} : state;
         default:
             return state;
     }
 }
 
-const userReducers = {userId}
+const userReducers = {userState}
 
 export default userReducers;

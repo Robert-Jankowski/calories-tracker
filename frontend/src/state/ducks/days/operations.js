@@ -9,7 +9,7 @@ const daysSchema = new schema.Array(daySchema);
 
 const getDays = (userId) => (dispatch) => dispatch(createAction({
     method: 'GET',
-    endpoint: `https://localhost:5000/calories-tracker/${userId}/days`,
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/days`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
