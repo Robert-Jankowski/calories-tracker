@@ -4,8 +4,8 @@ import {normalize, schema} from "normalizr";
 
 const {MEALS_REQUEST, MEALS_FAILURE, MEALS_SUCCESS} = types
 
-const productSchema = new schema.Entity('meals');
-const mealsSchema = new schema.Array(productSchema);
+const mealSchema = new schema.Entity('meals');
+const mealsSchema = new schema.Array(mealSchema);
 
 const getMeals = (userId) => (dispatch) => dispatch(createAction({
     method: 'GET',

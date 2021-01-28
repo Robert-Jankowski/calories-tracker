@@ -8,8 +8,12 @@ import {default as daysOperations} from "../../state/ducks/days/operations";
 import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations"
 import {default as daysActions} from "../../state/ducks/days/actions"
+import selectors from "../../state/ducks/meals/selectors";
 
-const MainPage = ({userId, isUserLogged, changeDay, addDay, days, displayedDate, fetchDays, fetchProducts, fetchMeals}) => {
+const MainPage = ({userId, isUserLogged,
+                  changeDay, addDay, days, displayedDate,
+                  fetchDays, fetchProducts, fetchMeals,
+                  mealsByDay}) => {
 
     useEffect(() => {
         if(isUserLogged) {
@@ -28,7 +32,7 @@ const MainPage = ({userId, isUserLogged, changeDay, addDay, days, displayedDate,
     return(
         <main>
             <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
-            <Meals />
+            <Meals mealsByDay={mealsByDay}/>
             <Footer />
         </main>
     )
@@ -41,7 +45,8 @@ const mapStateToProps = (state) => {
         meals: state.entities.meals.allIds.map(n => state.entities.meals.byId[n]),
         days: state.entities.days.allIds.map(n => state.entities.days.byId[n]),
         products: state.entities.products.allIds.map(n => state.entities.products.byId[n]),
-        displayedDate: state.displayedDate
+        displayedDate: state.displayedDate,
+        mealsByDay: selectors.mealsByDay(state)
     }
 }
 const mapDispatchToProps = (dispatch) => {

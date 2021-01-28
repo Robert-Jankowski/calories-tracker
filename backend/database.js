@@ -65,9 +65,14 @@ function Database() {
     }
     this.addDay = (id, dayId) => {
         const user = this.users.find(n => n.user_data.id === id)
-        const newDay = {id: dayId, meals: []}
-        user.days.push(newDay)
-        return newDay
+        if(user.days.some(n => n.id === dayId))
+            return user.days.find(n => n.id === dayId)
+        else {
+            const newDay = {id: dayId, meals: []}
+            user.days.push(newDay)
+            return newDay
+        }
+
     }
 }
 exports.Database = Database
