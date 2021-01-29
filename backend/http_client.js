@@ -94,8 +94,18 @@ app.post('/calories-tracker/:userId/day', (req, res) => {
 
 //REPLACE DAY
 app.patch('/calories-tracker/:userId/day', (req, res) => {
-    const day = db.replaceDay(req.params.userId)
+    const day = db.replaceDay(req.params.userId, req.body)
     return res.send({...day})
+})
+//DELETEMEAL
+app.delete('/calories-tracker/:userId/meals/:mealId', (req, res) => {
+    db.deleteMeal(req.params.userId, req.params.mealId)
+    return res.send("SUCCESS")
+})
+//ADDMEAL
+app.post('/calories-tracker/:userId/meals', (req,res) => {
+    const newMeal = db.addMeal(req.params.userId ,req.body.meal_type, req.body.meal_id)
+    return res.send({...newMeal})
 })
 
 app.listen(port, () => {

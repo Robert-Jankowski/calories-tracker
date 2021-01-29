@@ -7,7 +7,7 @@ const allDays = (state) => state.entities.days.allIds?.map(id => daysById(state)
 
 
 const days = createSelector(allDays, mealsById, productsById, (daysArray, mealsById, productsById) => {
-    console.log({daysArray, mealsById, productsById})
+
     return daysArray?.map(day => ({...day, meals: day.meals.map(mealId => {
         const meal = mealsById[mealId] || {}
             return {...meal, products: meal?.products?.map(productId => productsById[productId])}

@@ -65,14 +65,24 @@ function Database() {
     }
     this.addDay = (id, dayId) => {
         const user = this.users.find(n => n.user_data.id === id)
-        if(user.days.some(n => n.id === dayId))
+        if (user.days.some(n => n.id === dayId))
             return user.days.find(n => n.id === dayId)
         else {
             const newDay = {id: dayId, meals: []}
             user.days.push(newDay)
             return newDay
         }
-
     }
+    this.deleteMeal = (userId, mealId) => {
+        const user = this.users.find(n => n.user_data.id === userId)
+        user.meals = user.meals.filter(n => n.id !== mealId)
+    }
+    this.addMeal = (userId, meal_type ,id) => {
+        const user = this.users.find(n => n.user_data.id === userId)
+        const newMeal = {id, mealtype: meal_type, products: []}
+        user.meals.push(newMeal)
+        return newMeal
+    }
+
 }
 exports.Database = Database

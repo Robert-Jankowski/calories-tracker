@@ -1,9 +1,11 @@
 import React from 'react'
-import selectors from "../../state/ducks/meals/selectors";
+import {connect} from "react-redux";
+import Product from "./Product";
+import {default as mealsOperations} from "../../state/ducks/meals/operations";
+import {default as daysOperations} from "../../state/ducks/days/operations";
 
-const Meal = ({meal}) => {
-
-    const nutritionByMeal = meal.products.reduce((acc, a) =>
+const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
+    const nutritionByMeal = meal?.products?.reduce((acc, a) =>
             ({
                 calories: acc.calories + a.calories,
                 proteins: acc.proteins + a.proteins,
@@ -12,35 +14,86 @@ const Meal = ({meal}) => {
             })
         , {calories: 0, proteins: 0, fats: 0, carbs: 0})
 
+    const DeleteButton = () => {
+        return (
+            <button
+            onClick={() => {
+                const newDay = {...day, meals: day.meals.filter(n => n !== meal.id)}
+                deleteMeal(userId, meal.id)
+                updateDay(userId, newDay)
+            }}>Delete</button>
+        )
+    }
+
+    const MealInfo = () => {
+        return(
+            <div>
+                <h1>{meal.mealtype}</h1>
+                <p>{nutritionByMeal.calories} kcal</p>
+                <p>{nutritionByMeal.proteins} proteins</p>
+                <p>{nutritionByMeal.carbs} carbs</p>
+                <p>{nutritionByMeal.fats} fats</p>
+            </div>
+        )
+    }
+
+    const ProductsList = () => {
+        return(
+            <ul key={`products_list${meal.id}`}>
+                {meal.products?.map(product => {
+                    return(
+                        <Product product={product}/>
+                    )
+                })}
+            </ul>
+        )
+    }
+
+    const AddButton = () => {
+        return(
+            <button>
+                Add product
+            </button>
+        )
+    }
+
+    const ConditionalRender = () => {
+        return (
+            typeof nutritionByMeal !== undefined && typeof day !== undefined ?
+            (
+            <React.Fragment>
+                <MealInfo />
+                <DeleteButton />
+                <ProductsList />
+                <AddButton />
+            </React.Fragment>
+        ) : (
+            <React.Fragment>
+               <p>Loading...</p>
+            </React.Fragment>
+        )
+        )}
 
     return(
         <li key={`meal${meal.id}`}>
             <div>
-                <div>
-                    <h1>{meal.mealtype}</h1>
-                    <p>{nutritionByMeal.calories} kcal</p>
-                    <p>{nutritionByMeal.proteins} proteins</p>
-                    <p>{nutritionByMeal.carbs} carbs</p>
-                    <p>{nutritionByMeal.fats} fats</p>
-                </div>
-                <ul key={`products_list${meal.id}`}>
-                    {meal.products?.map(product => {
-                        return(
-                            <li key={`product${product.id}`}>
-                                <div>
-                                    <h3>{product.name}</h3>
-                                    <p>{product.calories} kcal</p>
-                                    <p>{product.proteins} proteins</p>
-                                    <p>{product.carbs} carbs</p>
-                                    <p>{product.fats} fats</p>
-                                </div>
-                            </li>
-                        )
-                    })}
-                </ul>
+                <ConditionalRender />
             </div>
         </li>
     )
 }
 
-export default Meal
+const mapDispatchToProps = (dispatch) => {
+    return {
+        deleteMeal: (userId, mealId) => dispatch(mealsOperations.deleteMeal(userId, mealId)),
+        updateDay: (userId, day) => dispatch(daysOperations.updateDay(userId, day))
+    }
+}
+const mapStateToProps = (state) => {
+    return {
+        userId: state.userState.userId,
+        day: state.entities.days.byId[state.displayedDate]
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Meal)
