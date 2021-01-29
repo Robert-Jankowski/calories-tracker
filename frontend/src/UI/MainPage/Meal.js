@@ -26,13 +26,17 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
     }
 
     const MealInfo = () => {
-        return(
+        return typeof nutritionByMeal !== undefined ? (
             <div>
                 <h1>{meal.mealtype}</h1>
-                <p>{nutritionByMeal.calories} kcal</p>
-                <p>{nutritionByMeal.proteins} proteins</p>
-                <p>{nutritionByMeal.carbs} carbs</p>
-                <p>{nutritionByMeal.fats} fats</p>
+                <p>{nutritionByMeal?.calories} kcal</p>
+                <p>{nutritionByMeal?.proteins} proteins</p>
+                <p>{nutritionByMeal?.carbs} carbs</p>
+                <p>{nutritionByMeal?.fats} fats</p>
+            </div>
+        ) : (
+            <div>
+                <h1>{meal.mealtype}</h1>
             </div>
         )
     }

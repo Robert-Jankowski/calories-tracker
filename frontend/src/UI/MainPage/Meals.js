@@ -1,9 +1,6 @@
 import React from 'react'
 import Meal from "./Meal";
 import AddMealForm from "./AddMealForm";
-import {default as mealsOperations} from "../../state/ducks/meals/operations";
-import {default as daysOperations} from "../../state/ducks/days/operations";
-import {connect} from "react-redux";
 
 const Meals = ({mealsByDay}) => {
 
