@@ -1,15 +1,33 @@
-import React from 'react'
+import React, {useState} from 'react'
 import ProductFinder from "../FindPage/ProductFinder";
 import Footer from "../FindPage/Footer";
 import Results from "../FindPage/Results";
+import {connect} from "react-redux";
+import operations from "../../state/ducks/products/operations";
+import selectors from "../../state/ducks/products/selectors";
 
-const FindPage = () => {
+const FindPage = ({products, findProducts}) => {
+
+    const [finderInput, setFinderInput] = useState("")
+
     return (
         <main>
-            <ProductFinder/>
-            <Results/>
+            <ProductFinder finderInput={finderInput} setFinderInput={setFinderInput} findProducts={findProducts}/>
+            <Results finderInput={finderInput} products={products}/>
             <Footer/>
         </main>
     )
 }
-export default FindPage
+const mapStateToProps = (state) => {
+    return {
+        products: selectors.products(state)
+    }
+}
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        findProducts: (query) => dispatch(operations.findProducts(query))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(FindPage)

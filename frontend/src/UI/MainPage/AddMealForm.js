@@ -8,18 +8,24 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
 
     const [selected, setSelected] = useState("breakfast")
     const options = ["breakfast", "brunch", "lunch", "dinner", "snack", "supper"]
-    return(
-        <div>
+
+    const FormSelect = () => {
+        return(
             <select
-            onChange={(e) => {
-                setSelected(e.target.value)
-            }}>
+                onChange={(e) => {
+                    setSelected(e.target.value)
+                }}>
                 {options.map(option => {
                     return(
                         <option value={option}>{option}</option>
                     )
                 })}
             </select>
+        )
+    }
+
+    const FormButton = () => {
+        return(
             <button onClick={() => {
                 const newMealId = uuid()
                 addMeal(userId, selected, newMealId)
@@ -27,6 +33,13 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
             }}>
                 Add meal
             </button>
+        )
+    }
+
+    return(
+        <div>
+            <FormSelect />
+            <FormButton />
         </div>
     )
 }

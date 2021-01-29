@@ -1,6 +1,7 @@
 import {createAction} from "redux-api-middleware";
 import types from "./types";
 import {normalize, schema} from "normalizr";
+import api from "../../../api"
 
 const {PRODUCTS_REQUEST, PRODUCTS_FAILURE, PRODUCTS_SUCCESS} = types
 
@@ -28,7 +29,27 @@ const getProducts = (userId) => (dispatch) => dispatch(createAction({
         PRODUCTS_FAILURE
     ]
 }))
+
+const findProducts = (query) => (dispatch) => dispatch(createAction({
+    method: 'GET',
+    endpoint: `https://api.edamam.com/api/food-database/v2/parser`,
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+    query: {
+        ingr: query,
+        app_id: api.apiId,
+        app_key: api.apiKey
+    },
+    types: [
+        PRODUCTS_REQUEST,
+        PRODUCTS_SUCCESS,
+        PRODUCTS_FAILURE
+    ]
+}))
+
 const operations = {
-    getProducts
+    getProducts, findProducts
 }
 export default operations

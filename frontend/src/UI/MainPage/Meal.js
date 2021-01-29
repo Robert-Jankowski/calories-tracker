@@ -3,6 +3,7 @@ import {connect} from "react-redux";
 import Product from "./Product";
 import {default as mealsOperations} from "../../state/ducks/meals/operations";
 import {default as daysOperations} from "../../state/ducks/days/operations";
+import FindPage from "../views/FindPage";
 
 const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
     const nutritionByMeal = meal?.products?.reduce((acc, a) =>
@@ -69,7 +70,8 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
                 <MealInfo />
                 <DeleteButton />
                 <ProductsList />
-                <AddButton />
+                {/*<AddButton />*/}
+                <FindPage />
             </React.Fragment>
         ) : (
             <React.Fragment>
