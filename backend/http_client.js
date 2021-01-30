@@ -99,7 +99,6 @@ app.patch('/calories-tracker/:userId/day', (req, res) => {
 })
 //REPLACE MEAL
 app.patch('/calories-tracker/:userId/meal', (req, res) => {
-    console.log({body:req.body})
     const meal = db.replaceMeal(req.params.userId, req.body)
     return res.send({...meal})
 })

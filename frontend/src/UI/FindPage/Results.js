@@ -1,15 +1,16 @@
 import React from 'react'
 import selectors from "../../state/ducks/products/selectors";
 import Product from "../FindPage/Product";
+import {connect} from "react-redux"
 
-const Results = ({finderInput, products, meal}) => {
+const Results = ({finderInput, products, meal, fetched}) => {
 
-    const productsByQuery = selectors.productsByQuery(products, finderInput)
+    const list = (fetched.isFetched) ? fetched.list : selectors.productsByQuery(products, finderInput)
 
     const ListOfProducts = () => {
         return(
             <ul>
-                {productsByQuery?.map(product => {
+                {list?.map(product => {
                     return(
                         <Product product={product} meal={meal}/>
                     )
@@ -24,4 +25,10 @@ const Results = ({finderInput, products, meal}) => {
         </section>
     )
 }
-export default Results
+const mapStateToProps = (state) => {
+    return {
+        fetched: state.fetchedProducts
+    }
+}
+
+export default connect(mapStateToProps)(Results)

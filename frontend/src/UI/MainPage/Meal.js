@@ -7,7 +7,6 @@ import FindPage from "../views/FindPage";
 
 const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
 
-    console.log(meal)
     const nutritionByMeal = meal?.products?.reduce((acc, a) =>
             ({
                 calories: acc.calories + a.calories,

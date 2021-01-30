@@ -1,6 +1,7 @@
 import React from 'react'
 
 const ProductFinder = ({finderInput, setFinderInput, findProducts}) => {
+
     
     const FinderInput = () => {
         return (

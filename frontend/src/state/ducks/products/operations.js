@@ -3,7 +3,7 @@ import types from "./types";
 import {normalize, schema} from "normalizr";
 import api from "../../../api"
 
-const {PRODUCTS_REQUEST, PRODUCTS_FAILURE, PRODUCTS_SUCCESS} = types
+const {PRODUCTS_REQUEST, PRODUCTS_FAILURE, PRODUCTS_SUCCESS, SET_FETCHED} = types
 
 const productSchema = new schema.Entity('products');
 const productsSchema = new schema.Array(productSchema);
@@ -32,26 +32,21 @@ const getProducts = (userId) => (dispatch) => dispatch(createAction({
 
 const findProducts = (query) => (dispatch) => dispatch(createAction({
     method: 'GET',
-    endpoint: `https://api.edamam.com/api/food-database/v2/parser`,
+    endpoint: `https://api.edamam.com/api/food-database/v2/parser?ingr=${query}&app_id=${api.apiId}&app_key=${api.apiKey}`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
     },
-    query: {
-        ingr: query,
-        app_id: api.apiId,
-        app_key: api.apiKey
-    },
     types: [
         PRODUCTS_REQUEST,
-        PRODUCTS_SUCCESS,
+        SET_FETCHED,
         PRODUCTS_FAILURE
     ]
 }))
 
 const addProduct = (userId, product) => (dispatch) => dispatch(createAction({
     method: 'POST',
-    endpoint: `http://localhost:5000/calories-tracker/${userId}/products`,
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/product`,
     headers: {
         "Accept": "application/json",
         "Content-Type": "application/json",
