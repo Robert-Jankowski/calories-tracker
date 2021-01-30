@@ -49,7 +49,7 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
             <ul key={`products_list${meal.id}`}>
                 {meal.products?.map(product => {
                     return(
-                        <Product product={product}/>
+                        <Product product={product} meal={meal}/>
                     )
                 })}
             </ul>

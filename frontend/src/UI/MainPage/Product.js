@@ -1,6 +1,8 @@
 import React from 'react'
+import operations from "../../state/ducks/meals/operations";
+import {connect} from "react-redux";
 
-const Product = ({product}) => {
+const Product = ({product, replaceMeal, userId, meal}) => {
 
     const ProductName = () => {
         return(
@@ -9,7 +11,10 @@ const Product = ({product}) => {
     }
     const DeleteButton = () => {
         return(
-            <button>Delete</button>
+            <button onClick={() => {
+                replaceMeal(userId, {...meal,
+                    products: [...meal.products.filter(p => p.id !== product.id)].map(p => p.id)})
+            }}>Delete</button>
         )
     }
     const ProductNutrition = () => {
@@ -34,5 +39,16 @@ const Product = ({product}) => {
 
     )
 }
+const mapStateToProps = (state) => {
+    return {
+        userId: state.userState.userId
+    }
+}
 
-export default Product
+const mapDispatchToProps = (dispatch) => {
+    return {
+        replaceMeal: (userId, meal) => dispatch(operations.replaceMeal(userId, meal))
+    }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Product)
