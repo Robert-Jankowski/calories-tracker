@@ -6,14 +6,14 @@ import {connect} from "react-redux";
 import operations from "../../state/ducks/products/operations";
 import selectors from "../../state/ducks/products/selectors";
 
-const FindPage = ({products, findProducts}) => {
+const FindPage = ({products, findProducts, meal}) => {
 
     const [finderInput, setFinderInput] = useState("")
 
     return (
         <main>
             <ProductFinder finderInput={finderInput} setFinderInput={setFinderInput} findProducts={findProducts}/>
-            <Results finderInput={finderInput} products={products}/>
+            <Results finderInput={finderInput} products={products} meal={meal}/>
             <Footer/>
         </main>
     )

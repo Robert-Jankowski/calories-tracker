@@ -83,6 +83,12 @@ function Database() {
         user.meals.push(newMeal)
         return newMeal
     }
+    this.replaceMeal = (userId, meal) => {
+        const user = this.users.find(n => n.user_data.id === userId)
+        const mealId = user.meals.findIndex(n => n.id === meal.id)
+        user.meals[mealId] = {...meal}
+        return {...meal}
+    }
 
 }
 exports.Database = Database

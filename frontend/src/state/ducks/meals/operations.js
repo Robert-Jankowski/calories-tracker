@@ -74,7 +74,30 @@ const addMeal = (userId, meal_type, meal_id) => (dispatch) => dispatch(createAct
     ]
 }))
 
+const replaceMeal = (userId, meal) => (dispatch) => dispatch(createAction({
+    method: 'PATCH',
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/meal`,
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({...meal}),
+    types: [
+        MEALS_REQUEST,
+        {
+            type: MEALS_SUCCESS,
+            payload: async (action, state, res) => {
+                const json = await res.json()
+                const { entities } = normalize(json, mealSchema);
+                return entities;
+            },
+            meta: { actionType: 'GET_ONE' }
+        },
+        MEALS_FAILURE
+    ]
+}))
+
 const operations = {
-    getMeals, deleteMeal, addMeal
+    getMeals, deleteMeal, addMeal, replaceMeal
 }
 export default operations

@@ -49,7 +49,30 @@ const findProducts = (query) => (dispatch) => dispatch(createAction({
     ]
 }))
 
+const addProduct = (userId, product) => (dispatch) => dispatch(createAction({
+    method: 'POST',
+    endpoint: `http://localhost:5000/calories-tracker/${userId}/products`,
+    headers: {
+        "Accept": "application/json",
+        "Content-Type": "application/json",
+    },
+    body: JSON.stringify({...product}),
+    types: [
+        PRODUCTS_REQUEST,
+        {
+            type: PRODUCTS_SUCCESS,
+            payload: async (action, state, res) => {
+                const json = await res.json();
+                const { entities } = normalize(json, productSchema);
+                return entities;
+            },
+            meta: { actionType: 'GET_ONE' }
+        },
+        PRODUCTS_FAILURE
+    ]
+}))
+
 const operations = {
-    getProducts, findProducts
+    getProducts, findProducts, addProduct
 }
 export default operations

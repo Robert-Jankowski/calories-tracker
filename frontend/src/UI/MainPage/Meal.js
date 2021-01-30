@@ -6,6 +6,8 @@ import {default as daysOperations} from "../../state/ducks/days/operations";
 import FindPage from "../views/FindPage";
 
 const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
+
+    console.log(meal)
     const nutritionByMeal = meal?.products?.reduce((acc, a) =>
             ({
                 calories: acc.calories + a.calories,
@@ -71,7 +73,7 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay}) => {
                 <DeleteButton />
                 <ProductsList />
                 {/*<AddButton />*/}
-                <FindPage />
+                <FindPage meal={meal}/>
             </React.Fragment>
         ) : (
             <React.Fragment>

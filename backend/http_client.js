@@ -97,6 +97,13 @@ app.patch('/calories-tracker/:userId/day', (req, res) => {
     const day = db.replaceDay(req.params.userId, req.body)
     return res.send({...day})
 })
+//REPLACE MEAL
+app.patch('/calories-tracker/:userId/meal', (req, res) => {
+    console.log({body:req.body})
+    const meal = db.replaceMeal(req.params.userId, req.body)
+    return res.send({...meal})
+})
+
 //DELETEMEAL
 app.delete('/calories-tracker/:userId/meals/:mealId', (req, res) => {
     db.deleteMeal(req.params.userId, req.params.mealId)
