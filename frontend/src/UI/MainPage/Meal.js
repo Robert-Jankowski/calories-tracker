@@ -1,7 +1,6 @@
 import React from 'react'
 import {connect} from "react-redux";
-import operations, {default as mealsOperations} from "../../state/ducks/meals/operations";
-import {default as daysOperations} from "../../state/ducks/days/operations";
+import operations from "../../state/ducks/meals/operations";
 
 //MATERIALS-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -17,13 +16,14 @@ import TableFooter from '@material-ui/core/TableFooter';
 import IconButton from '@material-ui/core/IconButton';
 import TableFooterBody from "./TableFooterBody";
 
-const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
+const Meal = ({meal, userId, day, replaceMeal}) => {
 
 
     const useStyles = makeStyles({
         table: {
             maxWidth: 800,
-            width: 1000
+            minWidth: 400,
+            marginBottom: 20
         },
         icon: {
             color:"#bd3611",
@@ -36,7 +36,6 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
         }
     });
     const classes = useStyles();
-
     const nutritionByMeal = meal?.products?.reduce((acc, a) =>
             ({
                 calories: acc.calories + a.calories,
@@ -76,7 +75,7 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
                     </TableHead>
                     <TableBody>
                         {products.map((product, i) => (
-                            <TableRow key={product.name}>
+                            <TableRow key={`${meal.id}-${i}`}>
                                 <TableCell component="th" scope="row">
                                     {i === 0 ?
                                         (<p/>) : (
@@ -112,21 +111,17 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
         return (
             typeof nutritionByMeal !== "undefined" && typeof day !== "undefined" && typeof meal !== "undefined" ?
             (
-            <React.Fragment>
                 <ProductTable products={[nutritionByMeal,...meal?.products]} meal_name={meal?.mealtype}/>
-            </React.Fragment>
         ) : (
-            <React.Fragment>
                <p>Loading...</p>
-            </React.Fragment>
         )
         )}
 
 
     return(
-            <div>
-                <ConditionalRender />
-            </div>
+            <article>
+                <ConditionalRender/>
+            </article>
     )
 }
 

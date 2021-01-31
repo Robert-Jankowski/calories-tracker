@@ -10,43 +10,6 @@ app.options('*', cors())
 
 const db = new Database()
 
-//TESTS
-db.register("user", "secret", uuid())
-const userId = db.users[0].user_data.id
-db.addProduct(userId, {
-        id: "1",
-        name: "egg",
-        calories: 80,
-        proteins: 10,
-        carbs: 2,
-        fats: 7
-    })
-db.addProduct(userId, {
-    id: "2",
-    name: "chicken",
-    calories: 120,
-    proteins: 9,
-    carbs: 3,
-    fats: 5
-})
-db.addProduct(userId, {
-    id: "3",
-    name: "tomato",
-    calories: 170,
-    proteins: 22,
-    carbs: 32,
-    fats: 37
-})
-const user = db.findById(userId)
-user.meals = [...user.meals, {
-    id: "6",
-    products: ["1","2","3"],
-    mealtype: "lunch"
-}]
-db.addDay(userId, "2021-01-28")
-user.days[0].meals = [...user.days[0].meals, "6"]
-//
-
 //API
 app.use(express.json());
 

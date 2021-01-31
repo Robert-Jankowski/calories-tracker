@@ -17,14 +17,15 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
         return(
             <FormControl>
             <Select
+                variant="filled"
                 labelId="mealselect"
                 value={selected}
                 onChange={(e) => {
                     setSelected(e.target.value)
                 }}>
-                {options.map(option => {
+                {options.map((option,i) => {
                             return(
-                                <MenuItem value={option}>{option}</MenuItem>
+                                <MenuItem key={`menuitem${i}`} value={option}>{option}</MenuItem>
                             )
                         })}
             </Select>
@@ -36,6 +37,7 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
         return(
             <Button
                 variant="contained"
+                color="primary"
                 onClick={() => {
                 const newMealId = uuid()
                 addMeal(userId, selected, newMealId)
@@ -47,10 +49,10 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
     }
 
     return(
-        <div style={{display: "flex", justifyContent: "center"}}>
+        <header style={{display: "flex", justifyContent: "center", margin: 10}}>
             <FormSelect />
             <FormButton />
-        </div>
+        </header>
     )
 }
 const mapDispatchToProps = (dispatch) => {

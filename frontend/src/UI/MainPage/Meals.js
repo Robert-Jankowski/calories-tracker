@@ -6,13 +6,13 @@ const Meals = ({mealsByDay}) => {
 
     const ListOfMeals = () => {
         return(
-            <div>
-                {mealsByDay?.meals.map(meal => {
+            <section>
+                {mealsByDay?.meals.map((meal,i) => {
                     return(
-                        <Meal meal={meal}/>
+                        <Meal meal={meal} key={`meal${i}`}/>
                     )
                 })}
-            </div>
+            </section>
         )
     }
 

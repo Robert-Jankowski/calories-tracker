@@ -1,5 +1,7 @@
 import React from 'react'
 import {Formik} from "formik"
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 const LoginForm = ({login}) => {
 
         return(
@@ -10,19 +12,28 @@ const LoginForm = ({login}) => {
                 }}>
                 {props => (
                     <form onSubmit={props.handleSubmit}>
-                        <input
-                            type="text"
+                        <TextField
+                            label="Username"
+                            variant="outlined"
                             name="username"
                             value={props.values.username}
                             onChange={props.handleChange}
-                        />
-                        <input
-                            type="text"
+                            size="small"/>
+                        <TextField
                             name="password"
+                            label="Password"
+                            type="password"
+                            variant="outlined"
                             value={props.values.password}
                             onChange={props.handleChange}
+                            size="small"
                         />
-                        <button type="submit">Login</button>
+                        <Button
+                            type="submit"
+                            variant="contained"
+                            color="primary"
+                            size="medium"
+                        >Login</Button>
                     </form>
                 )}
             </Formik>
