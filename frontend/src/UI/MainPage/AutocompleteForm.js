@@ -41,50 +41,39 @@ const AutocompleteForm = ({products, fetched, addProduct, replaceMeal, resetFetc
         )
     }
 
-    const FindButton = () => {
-        return(
-            <Button variant="outlined"
-                    onClick={() => {
-                        findProducts(finderInput)
-                    }}
-            >FIND</Button>
-        )
-    }
-
-    const Form = () => {
-        return(
-            <Autocomplete
-                onInputChange={(e, input) => setFinderInput(input)}
-                disableClearable
-                freeSolo
-                size="small"
-                id="combo-box"
-                options={list}
-                getOptionLabel={(option) => option.name}
-                style={{ width: 300 }}
-                renderOption={(option) => (
-                    <AddButton product={option}/>
-                )}
-                renderInput={(params) =>
-                    <TextField
-                        {...params}
-                        label="find product"
-                        variant="outlined"
-                    />
-                }
-            />
-        )
-    }
 
     return (
         <>
             <TableCell>
-                <Form />
+        <Autocomplete
+            onInputChange={(e, input) => setFinderInput(input)}
+            disableClearable
+            freeSolo
+            size="small"
+            id="combo-box"
+            options={list}
+            getOptionLabel={(option) => option.name}
+            style={{ width: 300 }}
+            renderOption={(option) => (
+                <AddButton product={option}/>
+            )}
+            renderInput={(params) =>
+                <TextField
+                    {...params}
+                    label="find product"
+                    variant="outlined"
+                />
+            }
+        />
             </TableCell>
             <TableCell>
-                <FindButton />
+            <Button variant="outlined"
+            onClick={() => {
+                findProducts(finderInput)
+            }}
+            >FIND</Button>
             </TableCell>
-        </>
+            </>
 
     )
 }
