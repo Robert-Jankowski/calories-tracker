@@ -3,6 +3,10 @@ import React, {useState} from "react"
 import {default as mealsOperations} from "../../state/ducks/meals/operations";
 import {default as daysOperations} from "../../state/ducks/days/operations";
 import {connect} from "react-redux";
+import Select from '@material-ui/core/Select';
+import MenuItem from '@material-ui/core/MenuItem';
+import FormControl from '@material-ui/core/FormControl';
+import Button from '@material-ui/core/Button';
 
 const AddMealForm = ({userId, day, addMeal, updateDay}) => {
 
@@ -11,33 +15,39 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
 
     const FormSelect = () => {
         return(
-            <select
+            <FormControl>
+            <Select
+                labelId="mealselect"
+                value={selected}
                 onChange={(e) => {
                     setSelected(e.target.value)
                 }}>
                 {options.map(option => {
-                    return(
-                        <option value={option}>{option}</option>
-                    )
-                })}
-            </select>
+                            return(
+                                <MenuItem value={option}>{option}</MenuItem>
+                            )
+                        })}
+            </Select>
+            </FormControl>
         )
     }
 
     const FormButton = () => {
         return(
-            <button onClick={() => {
+            <Button
+                variant="contained"
+                onClick={() => {
                 const newMealId = uuid()
                 addMeal(userId, selected, newMealId)
                 updateDay(userId, {...day, meals: [...day.meals, newMealId]})
             }}>
                 Add meal
-            </button>
+            </Button>
         )
     }
 
     return(
-        <div>
+        <div style={{display: "flex", justifyContent: "center"}}>
             <FormSelect />
             <FormButton />
         </div>

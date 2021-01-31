@@ -3,6 +3,8 @@ import {connect} from "react-redux";
 import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations";
 import actions from "../../state/ducks/products/actions"
+import ListItem from '@material-ui/core/ListItem';
+import ListItemText from '@material-ui/core/ListItemText';
 
 const Product = ({product, productIds, userId, addProduct, replaceMeal, meal, resetFetched}) => {
     const AddButton = () => {
@@ -18,17 +20,15 @@ const Product = ({product, productIds, userId, addProduct, replaceMeal, meal, re
     }
     const ProductInfo = () => {
         return(
-            <p>{product.name}</p>
+            <ListItemText primary={product.name}></ListItemText>
         )
     }
 
     return(
-        <li key={product.id}>
-            <div>
+        <ListItem>
                 <ProductInfo />
                 <AddButton />
-            </div>
-        </li>
+        </ListItem>
     )
 }
 const mapStateToProps = (state) => {

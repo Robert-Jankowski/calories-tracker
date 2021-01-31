@@ -2,7 +2,6 @@ import React from 'react'
 import {connect} from "react-redux";
 import operations, {default as mealsOperations} from "../../state/ducks/meals/operations";
 import {default as daysOperations} from "../../state/ducks/days/operations";
-import FindPage from "../views/FindPage";
 
 //MATERIALS-UI
 import { makeStyles } from '@material-ui/core/styles';
@@ -15,14 +14,16 @@ import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import DeleteIcon from '@material-ui/icons/Delete';
 import TableFooter from '@material-ui/core/TableFooter';
-import Button from '@material-ui/core/Button';
 import IconButton from '@material-ui/core/IconButton';
+import TableFooterBody from "./TableFooterBody";
 
 const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
 
+
     const useStyles = makeStyles({
         table: {
-            maxWidth: 500
+            maxWidth: 800,
+            width: 1000
         },
         icon: {
             color:"#bd3611",
@@ -57,24 +58,7 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
         )
     }
 
-    const DeleteMeal = () => {
-        return (
-            <Button
-                variant="contained"
-                color="secondary"
-                className={classes.button}
-                startIcon={<DeleteIcon />}
-                style={{width: "100%"}}
-                onClick={() => {
-                    const newDay = {...day, meals: day.meals.filter(n => n !== meal.id)}
-                    deleteMeal(userId, meal.id)
-                    updateDay(userId, newDay)
-                }}
-            >
-                Delete
-            </Button>
-        )
-    }
+
 
     const ProductTable = ({meal_name, products}) => {
 
@@ -103,39 +87,33 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
                                         )}
 
                                 </TableCell>
-                                <TableCell align="right">{product.calories}</TableCell>
-                                <TableCell align="right">{product.fats}</TableCell>
-                                <TableCell align="right">{product.carbs}</TableCell>
-                                <TableCell align="right">{product.proteins}</TableCell>
+                                <TableCell align="right"
+                                           style={(i === 0) ? {fontWeight: "bold"}: {}}>{product.calories}</TableCell>
+                                <TableCell align="right"
+                                           style={(i === 0) ? {fontWeight: "bold"}: {}}>{product.fats}</TableCell>
+                                <TableCell align="right"
+                                           style={(i === 0) ? {fontWeight: "bold"}: {}}>{product.carbs}</TableCell>
+                                <TableCell align="right"
+                                           style={(i === 0) ? {fontWeight: "bold"}: {}}>{product.proteins}</TableCell>
                             </TableRow>
                         ))}
                     </TableBody>
                     <TableFooter>
-                        <DeleteMeal />
+                        <TableRow>
+                        <TableFooterBody day={day} meal={meal} userId={userId}/>
+                        </TableRow>
                     </TableFooter>
                 </Table>
             </TableContainer>
         );
     }
 
-    const AddButton = () => {
-        return(
-            <button>
-                Add product
-            </button>
-        )
-    }
-
-
-
     const ConditionalRender = () => {
         return (
-            typeof nutritionByMeal !== undefined && typeof day !== undefined ?
+            typeof nutritionByMeal !== "undefined" && typeof day !== "undefined" && typeof meal !== "undefined" ?
             (
             <React.Fragment>
-                <ProductTable products={[nutritionByMeal,...meal.products]} meal_name={meal.mealtype}/>
-                {/*<AddButton />*/}
-                <FindPage meal={meal}/>
+                <ProductTable products={[nutritionByMeal,...meal?.products]} meal_name={meal?.mealtype}/>
             </React.Fragment>
         ) : (
             <React.Fragment>
@@ -146,18 +124,14 @@ const Meal = ({meal, userId, day, deleteMeal, updateDay, replaceMeal}) => {
 
 
     return(
-        <li key={`meal${meal.id}`}>
             <div>
                 <ConditionalRender />
             </div>
-        </li>
     )
 }
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        deleteMeal: (userId, mealId) => dispatch(mealsOperations.deleteMeal(userId, mealId)),
-        updateDay: (userId, day) => dispatch(daysOperations.updateDay(userId, day)),
         replaceMeal: (userId, meal) => dispatch(operations.replaceMeal(userId, meal))
     }
 }

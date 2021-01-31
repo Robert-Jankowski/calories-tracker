@@ -30,7 +30,7 @@ const MainPage = ({userId, isUserLogged,
     },[fetchDays])
 
     return(
-        <main>
+        <main style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
             <Meals mealsByDay={mealsByDay}/>
             <Footer />

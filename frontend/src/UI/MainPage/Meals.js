@@ -6,21 +6,21 @@ const Meals = ({mealsByDay}) => {
 
     const ListOfMeals = () => {
         return(
-            <ul>
+            <div>
                 {mealsByDay?.meals.map(meal => {
                     return(
                         <Meal meal={meal}/>
                     )
                 })}
-            </ul>
+            </div>
         )
     }
 
 
     return(
         <section>
-            <ListOfMeals />
             <AddMealForm />
+            <ListOfMeals />
         </section>
     )
 }

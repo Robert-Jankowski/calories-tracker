@@ -1,4 +1,7 @@
 import React from 'react'
+import ArrowBackIcon from '@material-ui/icons/ArrowBack';
+import ArrowForwardIcon from '@material-ui/icons/ArrowForward';
+import IconButton from '@material-ui/core/IconButton';
 
 const DateBar = ({changeDay, displayedDate, addDay, days, userId}) => {
 
@@ -10,38 +13,38 @@ const DateBar = ({changeDay, displayedDate, addDay, days, userId}) => {
     const PreviousDay = () => {
 
         return(
-            <button onClick={() => {
+            <IconButton onClick={() => {
                 const previousDay = addDays(displayedDate, -1)
                 if (!(previousDay in days))
                     addDay(userId, previousDay)
                 changeDay(previousDay)
             }}>
-                Previous day
-            </button>
+                <ArrowBackIcon />
+            </IconButton>
         )
     }
 
     const NextDay = () => {
 
         return(
-            <button onClick={() => {
+            <IconButton onClick={() => {
                 const nextDay = addDays(displayedDate, 1)
                 if (!(nextDay in days))
                     addDay(userId, nextDay)
                 changeDay(nextDay)
             }}>
-                Next day
-            </button>
+                <ArrowForwardIcon />
+            </IconButton>
         )
     }
     const DisplayedDate = () => {
         return (
-            <p>{displayedDate}</p>
+            <h2>{displayedDate}</h2>
         )
     }
 
     return(
-        <section>
+        <section style={{display: "flex", justifyContent: "center"}}>
             <PreviousDay />
             <DisplayedDate />
             <NextDay />
