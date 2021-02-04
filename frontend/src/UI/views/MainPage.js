@@ -1,7 +1,6 @@
 import React, {useEffect} from 'react'
 import DateBar from "../MainPage/DateBar";
 import Meals from "../MainPage/Meals";
-import Footer from "../MainPage/Footer";
 
 import {connect} from "react-redux";
 import {default as daysOperations} from "../../state/ducks/days/operations";
@@ -10,6 +9,7 @@ import {default as mealsOperations} from "../../state/ducks/meals/operations"
 import {default as daysActions} from "../../state/ducks/days/actions"
 import selectors from "../../state/ducks/meals/selectors";
 import DayTable from "../MainPage/DayTable";
+import StatisticsPage from "./StatisticsPage";
 
 const MainPage = ({userId, isUserLogged,
                   changeDay, addDay, days, displayedDate,
@@ -34,8 +34,8 @@ const MainPage = ({userId, isUserLogged,
         <main style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
             <DayTable sumByDay={sumByDay} sumsByMeal={sumsByMeal}/>
+            <StatisticsPage />
             <Meals mealsByDay={mealsByDay} sumsByMeal={sumsByMeal}/>
-            <Footer />
         </main>
     )
 }

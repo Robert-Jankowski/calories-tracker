@@ -1,9 +1,9 @@
 import React from 'react'
 
-const Statistics = () => {
+const FilterForm = () => {
     return(
         <section>
         </section>
     )
 }
-export default Statistics
+export default FilterForm

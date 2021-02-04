@@ -1,4 +1,5 @@
 import { createSelector } from 'reselect'
+const initialState = {calories: 0, carbs: 0, fats: 0, proteins: 0}
 
 const daysById = (state) => state.entities.days.byId
 const mealsById = (state) => state.entities.meals.byId
@@ -16,7 +17,6 @@ const days = createSelector(allDays, mealsById, productsById, (daysArray, mealsB
 const mealsByDay = (state) => days(state).find(d => d.id === state.displayedDate)
 
 const dailyStatistics = (state) => days(state)?.map(day => {
-    const initialState = {calories: 0, carbs: 0, fats: 0, proteins: 0}
 
     const nutrition = day?.meals?.reduce((meal_acc,meal_next) => {
         const meal = meal_next?.products?.reduce((prod_acc, prod_next) => ({
@@ -40,7 +40,6 @@ const dailyStatistics = (state) => days(state)?.map(day => {
 
 const sumsByMeal = (state) =>
     mealsByDay(state)?.meals.map(meal => {
-        const initialState = {calories: 0, carbs: 0, fats: 0, proteins: 0}
         console.log(meal)
         const nutrition = meal?.products?.reduce((prod_acc, prod_next) => ({
             calories: prod_acc.calories + prod_next.calories,
@@ -56,8 +55,15 @@ const sumsByMeal = (state) =>
 
 const sumByDay = (state) => dailyStatistics(state).find(day => day.id === state.displayedDate)
 
+const sumAll = (state) => dailyStatistics(state).reduce((day_acc, day_next) => ({
+    calories: day_acc.calories + day_next.calories,
+    carbs: day_acc.carbs + day_next.carbs,
+    proteins: day_acc.proteins + day_next.proteins,
+    fats: day_acc.fats + day_next.fats,
+}),initialState)
+
 
 const selectors = {
-    mealsByDay, dailyStatistics, sumByDay, sumsByMeal
+    mealsByDay, dailyStatistics, sumByDay, sumsByMeal, sumAll
 }
 export default selectors
