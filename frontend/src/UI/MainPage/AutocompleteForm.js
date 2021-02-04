@@ -32,7 +32,6 @@ const AutocompleteForm = ({products, fetched, addProduct, replaceMeal, resetFetc
                 onClick={() => {
                 if (!(product.id in productIds))
                     addProduct(userId, product)
-                    console.log("click", product)
                 replaceMeal(userId, {...meal, products: [...meal.products.map(p => p.id), product.id]})
                 resetFetched()
 

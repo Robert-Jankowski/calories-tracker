@@ -27,14 +27,20 @@ function Database() {
     this.users = []
 
     this.register = (username, password, id) => {
-        const newUser = {
-            user_data: {username, password, id},
-            days: [],
-            meals: [],
-            products: []
+        const user = this.users.find(n => n.user_data.username === username)
+        if (typeof user === "undefined") {
+            const newUser = {
+                user_data: {username, password, id},
+                days: [],
+                meals: [],
+                products: []
+            }
+            this.users.push(newUser)
+            return {userId: newUser.user_data.id, username: newUser.user_data.username}
         }
-        this.users.push(newUser)
-        return {userId: newUser.user_data.id, username: newUser.user_data.username}
+        else
+            return null
+
     }
     this.login = (username, password) => {
         const user = this.users.find(n => n.user_data.username === username && n.user_data.password === password)

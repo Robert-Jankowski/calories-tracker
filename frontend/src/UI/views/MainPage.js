@@ -13,7 +13,7 @@ import selectors from "../../state/ducks/meals/selectors";
 const MainPage = ({userId, isUserLogged,
                   changeDay, addDay, days, displayedDate,
                   fetchDays, fetchProducts, fetchMeals,
-                  mealsByDay}) => {
+                  mealsByDay, dailyStatistics, sumsByMeal}) => {
 
     useEffect(() => {
         if(isUserLogged) {
@@ -32,7 +32,7 @@ const MainPage = ({userId, isUserLogged,
     return(
         <main style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
-            <Meals mealsByDay={mealsByDay}/>
+            <Meals mealsByDay={mealsByDay} sumsByMeal={sumsByMeal}/>
             <Footer />
         </main>
     )
@@ -44,9 +44,11 @@ const mapStateToProps = (state) => {
         isUserLogged: state.userState.isLogged,
         meals: state.entities.meals.allIds.map(n => state.entities.meals.byId[n]),
         days: state.entities.days.allIds.map(n => state.entities.days.byId[n]),
+        dailyStatistics: selectors.dailyStatistics(state),
         products: state.entities.products.allIds.map(n => state.entities.products.byId[n]),
         displayedDate: state.displayedDate,
-        mealsByDay: selectors.mealsByDay(state)
+        mealsByDay: selectors.mealsByDay(state),
+        sumsByMeal: selectors.sumsByMeal(state)
     }
 }
 const mapDispatchToProps = (dispatch) => {

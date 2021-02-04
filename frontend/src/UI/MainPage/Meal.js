@@ -16,7 +16,7 @@ import TableFooter from '@material-ui/core/TableFooter';
 import IconButton from '@material-ui/core/IconButton';
 import TableFooterBody from "./TableFooterBody";
 
-const Meal = ({meal, userId, day, replaceMeal}) => {
+const Meal = ({meal, userId, day, replaceMeal, sums}) => {
 
 
     const useStyles = makeStyles({
@@ -36,14 +36,6 @@ const Meal = ({meal, userId, day, replaceMeal}) => {
         }
     });
     const classes = useStyles();
-    const nutritionByMeal = meal?.products?.reduce((acc, a) =>
-            ({
-                calories: acc.calories + a.calories,
-                proteins: acc.proteins + a.proteins,
-                fats: acc.fats + a.fats,
-                carbs: acc.carbs + a.carbs
-            })
-        , {calories: 0, proteins: 0, fats: 0, carbs: 0})
 
     const DeleteProduct = ({product}) => {
         return (
@@ -109,14 +101,13 @@ const Meal = ({meal, userId, day, replaceMeal}) => {
 
     const ConditionalRender = () => {
         return (
-            typeof nutritionByMeal !== "undefined" && typeof day !== "undefined" && typeof meal !== "undefined" ?
+            typeof day !== "undefined" && typeof meal.products !== "undefined" && typeof sums.id !== "undefined" ?
             (
-                <ProductTable products={[nutritionByMeal,...meal?.products]} meal_name={meal?.mealtype}/>
+                <ProductTable products={[sums,...meal.products]} meal_name={meal.mealtype}/>
         ) : (
                <p>Loading...</p>
         )
         )}
-
 
     return(
             <article>
