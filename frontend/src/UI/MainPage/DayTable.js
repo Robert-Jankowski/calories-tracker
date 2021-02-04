@@ -12,7 +12,6 @@ import CircularProgress from "@material-ui/core/CircularProgress";
 
 const DayTable = ({sumByDay, sumsByMeal}) => {
 
-
     const TableComponent = () => {
         const data = [sumByDay, ...sumsByMeal]
         return (
@@ -70,4 +69,5 @@ const DayTable = ({sumByDay, sumsByMeal}) => {
         )
 
 }
+
 export default DayTable

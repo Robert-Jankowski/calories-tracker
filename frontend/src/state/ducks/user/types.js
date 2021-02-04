@@ -4,6 +4,6 @@ const USER_FAILURE = '@@user/USER_FAILURE'
 const types = {
     USER_FAILURE,
     USER_REQUEST,
-    USER_SUCCESS,
+    USER_SUCCESS
 }
 export default types

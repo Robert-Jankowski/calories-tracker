@@ -34,8 +34,8 @@ const MainPage = ({userId, isUserLogged,
         <main style={{display: "flex", flexDirection: "column", justifyContent: "center", alignItems: "center"}}>
             <DateBar changeDay={changeDay} displayedDate={displayedDate} addDay={addDay} days={days} userId={userId}/>
             <DayTable sumByDay={sumByDay} sumsByMeal={sumsByMeal}/>
-            <StatisticsPage />
             <Meals mealsByDay={mealsByDay} sumsByMeal={sumsByMeal}/>
+            <StatisticsPage />
         </main>
     )
 }
