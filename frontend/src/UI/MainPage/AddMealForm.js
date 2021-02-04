@@ -49,7 +49,7 @@ const AddMealForm = ({userId, day, addMeal, updateDay}) => {
     }
 
     return(
-        <header style={{display: "flex", justifyContent: "center", margin: 10}}>
+        <header style={{display: "flex", justifyContent: "center"}}>
             <FormSelect />
             <FormButton />
         </header>

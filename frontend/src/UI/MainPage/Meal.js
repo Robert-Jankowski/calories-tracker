@@ -15,6 +15,8 @@ import DeleteIcon from '@material-ui/icons/Delete';
 import TableFooter from '@material-ui/core/TableFooter';
 import IconButton from '@material-ui/core/IconButton';
 import TableFooterBody from "./TableFooterBody";
+import CircularProgress from '@material-ui/core/CircularProgress';
+
 
 const Meal = ({meal, userId, day, replaceMeal, sums}) => {
 
@@ -23,7 +25,7 @@ const Meal = ({meal, userId, day, replaceMeal, sums}) => {
         table: {
             maxWidth: 800,
             minWidth: 400,
-            marginBottom: 20
+            marginTop: 20
         },
         icon: {
             color:"#bd3611",
@@ -105,7 +107,7 @@ const Meal = ({meal, userId, day, replaceMeal, sums}) => {
             (
                 <ProductTable products={[sums,...meal.products]} meal_name={meal.mealtype}/>
         ) : (
-               <p>Loading...</p>
+                    <CircularProgress />
         )
         )}
 

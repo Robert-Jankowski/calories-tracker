@@ -1,6 +1,5 @@
 import React from 'react'
 import Meal from "./Meal";
-import AddMealForm from "./AddMealForm";
 
 const Meals = ({mealsByDay, sumsByMeal}) => {
 
@@ -21,7 +20,6 @@ const Meals = ({mealsByDay, sumsByMeal}) => {
 
     return(
         <section>
-            <AddMealForm />
             <ListOfMeals />
         </section>
     )

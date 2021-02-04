@@ -20,16 +20,16 @@ const dailyStatistics = (state) => days(state)?.map(day => {
 
     const nutrition = day?.meals?.reduce((meal_acc,meal_next) => {
         const meal = meal_next?.products?.reduce((prod_acc, prod_next) => ({
-            calories: prod_acc.calories + prod_next.calories,
-            carbs: prod_acc.carbs + prod_next.carbs,
-            proteins: prod_acc.proteins + prod_next.proteins,
-            fats: prod_acc.fats + prod_next.fats,
+            calories: prod_acc.calories + prod_next?.calories,
+            carbs: prod_acc.carbs + prod_next?.carbs,
+            proteins: prod_acc.proteins + prod_next?.proteins,
+            fats: prod_acc.fats + prod_next?.fats,
         }), initialState)
         return meal ? ({
-            calories: meal_acc.calories + meal.calories,
-            carbs: meal_acc.carbs + meal.carbs,
-            proteins: meal_acc.proteins + meal.proteins,
-            fats: meal_acc.fats + meal.fats,
+            calories: meal_acc.calories + meal?.calories,
+            carbs: meal_acc.carbs + meal?.carbs,
+            proteins: meal_acc.proteins + meal?.proteins,
+            fats: meal_acc.fats + meal?.fats,
         }) : initialState
     },initialState)
     return({
@@ -41,6 +41,7 @@ const dailyStatistics = (state) => days(state)?.map(day => {
 const sumsByMeal = (state) =>
     mealsByDay(state)?.meals.map(meal => {
         const initialState = {calories: 0, carbs: 0, fats: 0, proteins: 0}
+        console.log(meal)
         const nutrition = meal?.products?.reduce((prod_acc, prod_next) => ({
             calories: prod_acc.calories + prod_next.calories,
             carbs: prod_acc.carbs + prod_next.carbs,
@@ -49,6 +50,7 @@ const sumsByMeal = (state) =>
         }),initialState)
         return {
             id: meal.id,
+            mealtype: meal.mealtype,
             ...nutrition}
     })
 
