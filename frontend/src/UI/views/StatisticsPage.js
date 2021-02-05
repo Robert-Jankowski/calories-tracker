@@ -1,6 +1,11 @@
+// REACT, REDUX
 import React from "react"
 import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import selectors from "../../state/ducks/meals/selectors";
+
+// COMPONENTS
 import DoughnutChart from "../StatisticsPage/DoughnutChart";
 import LineChart from "../StatisticsPage/LineChart";
 

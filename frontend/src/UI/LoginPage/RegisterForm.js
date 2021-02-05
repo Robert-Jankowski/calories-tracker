@@ -1,7 +1,12 @@
+// REACT, REDUX
 import React from 'react'
-import {Formik} from "formik";
-import TextField from "@material-ui/core/TextField";
-import Button from "@material-ui/core/Button";
+
+// Formik
+import {Formik} from "formik"
+
+// Material-UI
+import TextField from '@material-ui/core/TextField';
+import Button from '@material-ui/core/Button';
 
 const RegisterForm = ({register}) => {
 

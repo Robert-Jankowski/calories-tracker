@@ -1,4 +1,7 @@
+// REACT, REDUX
 import React from 'react'
+
+// COMPONENTS
 import Meal from "./Meal";
 
 const Meals = ({mealsByDay, sumsByMeal}) => {

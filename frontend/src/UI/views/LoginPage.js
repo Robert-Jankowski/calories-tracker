@@ -1,9 +1,17 @@
+// REACT, REDUX
 import React, {useState} from 'react'
 import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import operations from "../../state/ducks/user/operations"
+
+// COMPONENTS
 import LoginForm from "../LoginPage/LoginForm";
-import Switch from '@material-ui/core/Switch';
 import RegisterForm from "../LoginPage/RegisterForm";
+
+// Material-UI
+import Switch from '@material-ui/core/Switch';
+
 
 const LoginPage = ({login, register}) => {
 

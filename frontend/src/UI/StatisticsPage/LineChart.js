@@ -1,8 +1,10 @@
+// REACT, REDUX
 import React from 'react'
+
+// Chart.js
 import { Line } from "react-chartjs-2"
 
 const LineChart = ({dailyStatistics}) => {
-    console.log({dailyStatistics})
     const data = {
         labels: dailyStatistics.map(day => day.id),
         datasets: [

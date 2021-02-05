@@ -40,7 +40,6 @@ const dailyStatistics = (state) => days(state)?.map(day => {
 
 const sumsByMeal = (state) =>
     mealsByDay(state)?.meals.map(meal => {
-        console.log(meal)
         const nutrition = meal?.products?.reduce((prod_acc, prod_next) => ({
             calories: prod_acc.calories + prod_next.calories,
             carbs: prod_acc.carbs + prod_next.carbs,

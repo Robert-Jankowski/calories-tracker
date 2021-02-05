@@ -1,15 +1,19 @@
+// REACT, REDUX
 import React, {useEffect} from 'react'
-import DateBar from "../MainPage/DateBar";
-import Meals from "../MainPage/Meals";
-
 import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import {default as daysOperations} from "../../state/ducks/days/operations";
 import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations"
 import {default as daysActions} from "../../state/ducks/days/actions"
 import selectors from "../../state/ducks/meals/selectors";
+
+// COMPONENTS
 import DayTable from "../MainPage/DayTable";
 import StatisticsPage from "./StatisticsPage";
+import DateBar from "../MainPage/DateBar";
+import Meals from "../MainPage/Meals";
 
 const MainPage = ({userId, isUserLogged,
                   changeDay, addDay, days, displayedDate,

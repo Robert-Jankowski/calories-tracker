@@ -1,4 +1,10 @@
+// REACT, REDUX
 import React from 'react';
+
+// COMPONENTS
+import AddMealForm from "./AddMealForm";
+
+// Material-UI
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
@@ -7,7 +13,6 @@ import TableHead from '@material-ui/core/TableHead';
 import TableRow from '@material-ui/core/TableRow';
 import Paper from '@material-ui/core/Paper';
 import TableFooter from "@material-ui/core/TableFooter";
-import AddMealForm from "./AddMealForm";
 import CircularProgress from "@material-ui/core/CircularProgress";
 
 const DayTable = ({sumByDay, sumsByMeal}) => {
@@ -28,7 +33,7 @@ const DayTable = ({sumByDay, sumsByMeal}) => {
                     </TableHead>
                     <TableBody>
                         {data?.map((row, i) => (
-                            <TableRow key={row.mealtype}>
+                            <TableRow key={`row${i}`}>
                                 <TableCell component="th" scope="row">
                                     {row.mealtype}
                                 </TableCell>

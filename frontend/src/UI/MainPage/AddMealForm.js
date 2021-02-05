@@ -1,12 +1,20 @@
-import {v4 as uuid} from "uuid"
+// REACT, REDUX
 import React, {useState} from "react"
+import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import {default as mealsOperations} from "../../state/ducks/meals/operations";
 import {default as daysOperations} from "../../state/ducks/days/operations";
-import {connect} from "react-redux";
+
+// Material-UI
 import Select from '@material-ui/core/Select';
 import MenuItem from '@material-ui/core/MenuItem';
 import FormControl from '@material-ui/core/FormControl';
 import Button from '@material-ui/core/Button';
+
+// UUID
+import {v4 as uuid} from "uuid"
+
 
 const AddMealForm = ({userId, day, addMeal, updateDay}) => {
 

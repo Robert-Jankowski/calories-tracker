@@ -1,5 +1,8 @@
+// REACT, REDUX
 import React from 'react'
 import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import operations from "../../state/ducks/meals/operations";
 
 //MATERIALS-UI

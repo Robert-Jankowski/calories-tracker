@@ -1,4 +1,7 @@
+//REACT, REDUX
 import React from 'react'
+
+// Chart.js
 import { Doughnut } from "react-chartjs-2"
 
 const DoughnutChart = ({sumAll}) => {

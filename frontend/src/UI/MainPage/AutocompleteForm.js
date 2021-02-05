@@ -1,14 +1,20 @@
-import Autocomplete from "@material-ui/lab/Autocomplete";
-import TextField from "@material-ui/core/TextField";
-import TableCell from "@material-ui/core/TableCell";
+// REACT, REDUX
 import React, {useState, useEffect} from "react";
-import Button from "@material-ui/core/Button";
+import {connect} from "react-redux";
+
+// SELECTORS, ACTIONS, OPERATIONS
 import selectors from "../../state/ducks/products/selectors";
-import operations, {default as productsOperations} from "../../state/ducks/products/operations";
+import {default as productsOperations} from "../../state/ducks/products/operations";
 import {default as mealsOperations} from "../../state/ducks/meals/operations";
 import {default as daysOperations} from "../../state/ducks/days/operations";
 import actions from "../../state/ducks/products/actions";
-import {connect} from "react-redux";
+
+// Material-UI
+import Button from "@material-ui/core/Button";
+import Autocomplete from "@material-ui/lab/Autocomplete";
+import TextField from "@material-ui/core/TextField";
+import TableCell from "@material-ui/core/TableCell";
+
 
 const AutocompleteForm = ({products, fetched, addProduct, replaceMeal, resetFetched, productIds, userId, meal, findProducts}) => {
 
@@ -30,17 +36,17 @@ const AutocompleteForm = ({products, fetched, addProduct, replaceMeal, resetFetc
         return(
             <div
                 onClick={() => {
-                if (!(product.id in productIds))
-                    addProduct(userId, product)
-                replaceMeal(userId, {...meal, products: [...meal.products.map(p => p.id), product.id]})
-                resetFetched()
-
+                    if(!([...meal.products.map(p => p.id)].includes(product.id))) {
+                        if (!(product.id in productIds))
+                            addProduct(userId, product)
+                        replaceMeal(userId, {...meal, products: [...meal.products.map(p => p.id), product.id]})
+                        resetFetched()
+                    }
             }}
             >{product.name}
             </div>
         )
     }
-
 
     return (
         <>
@@ -50,7 +56,6 @@ const AutocompleteForm = ({products, fetched, addProduct, replaceMeal, resetFetc
             disableClearable
             freeSolo
             size="small"
-            id="combo-box"
             options={list}
             getOptionLabel={(option) => option.name}
             style={{ width: 300 }}
@@ -88,7 +93,7 @@ const mapStateToProps = (state) => {
 
 const mapDispatchToProps = (dispatch) => {
     return {
-        findProducts: (query) => dispatch(operations.findProducts(query)),
+        findProducts: (query) => dispatch(productsOperations.findProducts(query)),
         deleteMeal: (userId, mealId) => dispatch(mealsOperations.deleteMeal(userId, mealId)),
         updateDay: (userId, day) => dispatch(daysOperations.updateDay(userId, day)),
         addProduct: (userId, product) => dispatch(productsOperations.addProduct(userId, product)),
