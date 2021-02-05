@@ -53,6 +53,10 @@ const DayTable = ({sumByDay, sumsByMeal}) => {
                             <TableCell>
                                 <AddMealForm />
                             </TableCell>
+                            <TableCell/>
+                            <TableCell/>
+                            <TableCell/>
+                            <TableCell/>
                         </TableRow>
                     </TableFooter>
                 </Table>

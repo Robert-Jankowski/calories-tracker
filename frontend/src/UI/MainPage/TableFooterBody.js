@@ -38,6 +38,8 @@ const TableFooterBody = ({day, meal, userId, deleteMeal, updateDay, products}) =
         <React.Fragment>
             <AutocompleteForm products={products} meal={meal}/>
             <TableCell><DeleteMeal/></TableCell>
+            <TableCell/>
+            <TableCell/>
         </React.Fragment>
     )
 }

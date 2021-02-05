@@ -41,10 +41,10 @@ const dailyStatistics = (state) => days(state)?.map(day => {
 const sumsByMeal = (state) =>
     mealsByDay(state)?.meals.map(meal => {
         const nutrition = meal?.products?.reduce((prod_acc, prod_next) => ({
-            calories: prod_acc.calories + prod_next.calories,
-            carbs: prod_acc.carbs + prod_next.carbs,
-            proteins: prod_acc.proteins + prod_next.proteins,
-            fats: prod_acc.fats + prod_next.fats,
+            calories: prod_acc.calories + prod_next?.calories,
+            carbs: prod_acc.carbs + prod_next?.carbs,
+            proteins: prod_acc.proteins + prod_next?.proteins,
+            fats: prod_acc.fats + prod_next?.fats,
         }),initialState)
         return {
             id: meal.id,
